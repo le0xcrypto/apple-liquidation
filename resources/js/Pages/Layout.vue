@@ -1,12 +1,6 @@
 <template>
-    <main>
-        <header class="bg-red-300 mb-3">
-            <inertia-link href="/">Home / </inertia-link>
-            <inertia-link href="/hello-world">Hello World</inertia-link>
-        </header>
-        <article>
-            <slot />
-        </article>
+    <main class="wrapper mt-8 font-mono">
+        <slot />
     </main>
 </template>
 
