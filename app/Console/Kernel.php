@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('apple:fetch:new')->everyMinute();
+        $schedule->command('apple:fetch:new')->everyFiveMinutes();
     }
 
     /**
