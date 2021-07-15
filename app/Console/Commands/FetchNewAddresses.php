@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Address;
+use App\Models\LastBlock;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -39,10 +40,10 @@ class FetchNewAddresses extends Command
      */
     public function handle()
     {
-        $data = [];
         $aTokens = config('atokens');
 
-        $currentBlock = 16882998;
+        $lastBlock = optional(LastBlock::orderBy('block', 'desc')->limit(1)->first())->block ?: 0;
+        $currentBlock = $this->getCurrentBlock();
 
         $endpoint = 'https://api.polygonscan.com/';
         $endpoint .= 'api?module=account&action=tokentx&address=%s';
@@ -51,7 +52,7 @@ class FetchNewAddresses extends Command
 
         foreach ($aTokens as $aToken) {
             // address, start block, end block
-            $url = sprintf($endpoint, $aToken, $currentBlock - 5000, $currentBlock);
+            $url = sprintf($endpoint, $aToken, $lastBlock + 1, $currentBlock);
 
             $resp = Http::get($url)->json();
 
@@ -63,12 +64,19 @@ class FetchNewAddresses extends Command
             }
         }
 
+        // Update last fetched block
+        LastBlock::create([
+            'block' => $currentBlock
+        ]);
+
         return 0;
     }
 
-    protected function asd()
+    protected function getCurrentBlock()
     {
+        $url = 'https://gasstation-mainnet.matic.network/';
+        $resp = Http::get($url)->json();
 
-
+        return $resp['blockNumber'];
     }
 }
