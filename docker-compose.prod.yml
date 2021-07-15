@@ -18,6 +18,7 @@ services:
       - |
         [ -d vendor/bin ] || composer install
         [ -f .env ] || { cp .env.example .env; php artisan key:generate --ansi; }
+        php artisan schedule:work &
         apache2-foreground
 
   db:

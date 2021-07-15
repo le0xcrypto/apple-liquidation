@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Address;
+use App\Models\LastBlock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,12 @@ Route::get('/address', function (Request $request) {
     return [
         'status' => 'OK',
         'data' => Address::all()
+    ];
+});
+
+Route::get('/block', function (Request $request) {
+    return [
+        'status' => 'OK',
+        'data' => LastBlock::orderBy('block', 'desc')->get()
     ];
 });
