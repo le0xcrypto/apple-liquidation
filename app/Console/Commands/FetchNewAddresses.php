@@ -45,15 +45,25 @@ class FetchNewAddresses extends Command
         $lastBlock = optional(LastBlock::orderBy('block', 'desc')->limit(1)->first())->block ?: 0;
         $currentBlock = $this->getCurrentBlock();
 
+        if ($lastBlock == $currentBlock) {
+            return  0;
+        }
+
         $endpoint = 'https://api.polygonscan.com/';
         $endpoint .= 'api?module=account&action=tokentx&address=%s';
         $endpoint .= '&startblock=%s&endblock=%s&sort=asc';
         $endpoint .= '&apikey=AK9MXCX94XGEGQHWC8C218P6AJTZHMPNYT';
 
+        // Create LastBlock record but skip
+        // updated_at -> it'll be filled when we finish fetching
+        $lastBlockModel = LastBlock::create([
+            'block' => $currentBlock,
+            'updated_at' => null
+        ]);
+
         foreach ($aTokens as $aToken) {
             // address, start block, end block
             $url = sprintf($endpoint, $aToken, $lastBlock + 1, $currentBlock);
-
             $resp = Http::get($url)->json();
 
             if ($resp['status'] == 1) {
@@ -64,10 +74,9 @@ class FetchNewAddresses extends Command
             }
         }
 
-        // Update last fetched block
-        LastBlock::create([
-            'block' => $currentBlock
-        ]);
+        // Update last fetched blocks update_at time,
+        // so we know the fetching is done
+        $lastBlockModel->touch();
 
         return 0;
     }
