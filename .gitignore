@@ -28,7 +28,6 @@ public/js/*
 public/css/*
 !public/js/*.min.js
 !public/css/*.min.css
-public/mix-manifest.json
 resources/js/ziggy.js
 
 # Ignore npm lock since we're using yarn
