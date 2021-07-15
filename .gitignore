@@ -19,8 +19,6 @@ yarn-error.log
 /.vagrant
 /node_modules
 /public/hot
-/public/css
-/public/js
 /storage/*.key
 /vendor
 .phpunit.result.cache
