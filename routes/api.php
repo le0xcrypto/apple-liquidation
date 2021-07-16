@@ -29,3 +29,7 @@ Route::get('/block', function (Request $request) {
         'data' => LastBlock::orderBy('block', 'desc')->get()
     ];
 });
+
+Route::get('/qwe', function (Request $request) {
+
+});
