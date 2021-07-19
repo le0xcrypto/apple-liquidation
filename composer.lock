@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9b6e728b946ce6290b46e9aa4f64a36",
+    "content-hash": "f409ed307e3609ae57d83ea349b50a7a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1318,6 +1318,64 @@
                 }
             ],
             "time": "2021-07-16T20:13:07+00:00"
+        },
+        {
+            "name": "le0xcrypto/php-polygonscan-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/le0xcrypto/php-polygonscan-api.git",
+                "reference": "7244b711015cc84bd917b291a614df0c9ee2ae35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/le0xcrypto/php-polygonscan-api/zipball/7244b711015cc84bd917b291a614df0c9ee2ae35",
+                "reference": "7244b711015cc84bd917b291a614df0c9ee2ae35",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "^5.5 || ^6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Etherscan\\": "lib/Etherscan/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "oraculus.io Team",
+                    "homepage": "https://oraculus.io"
+                },
+                {
+                    "name": "Maslakou Ihar",
+                    "email": "igormaslakoff@gmail.com",
+                    "homepage": "https://github.com/maslakoff"
+                }
+            ],
+            "description": "PHP client for the Etherscan API",
+            "homepage": "https://github.com/maslakoff/php-etherscan-api",
+            "keywords": [
+                "EtherScan.io",
+                "api",
+                "ethereum",
+                "etherscan"
+            ],
+            "support": {
+                "email": "igormaslakoff@gmail.com",
+                "source": "https://github.com/le0xcrypto/php-polygonscan-api/tree/master"
+            },
+            "time": "2021-07-17T21:08:14+00:00"
         },
         {
             "name": "le0xcrypto/web3.php",
@@ -7897,7 +7955,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "le0xcrypto/laravel-web3": 20
+        "le0xcrypto/laravel-web3": 20,
+        "le0xcrypto/php-polygonscan-api": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
